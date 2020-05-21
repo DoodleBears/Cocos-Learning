@@ -1,3 +1,3 @@
 # Learning Description
 
-notes that toke while learning
+Notes and Diary every learning period
