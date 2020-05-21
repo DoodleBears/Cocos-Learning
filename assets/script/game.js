@@ -2,6 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        //Binding tiledMap(the property) to cc.TiledMap(allow us to add file in Cocos Creator)
         tiledMap: cc.TiledMap
     },
 
@@ -9,27 +10,35 @@ cc.Class({
         let p = cc.director.getPhysicsManager();
         p.enabled = true;
         //Draw collider space 绘制碰撞区域
-        //p.debugDrawFlags = true;
+        p.debugDrawFlags = true;
         p.gravity = cc.v2(0, 0);
         
     },
 
     start () { 
+        //get data from TiledMap, tiledMap is what we select in Cocos Creator
         let tiledSize = this.tiledMap.getTileSize();
         let layer = this.tiledMap.getLayer('wall');
         let layerSize = layer.getLayerSize();
 
         for (let i = 0; i < layerSize.width; i++){
             for (let j = 0; j < layerSize.height; j++){
+                // set every tiled's arttribute
                 let tiled = layer.getTiledTileAt(i, j, true);
                 if (tiled.gid != 0){
+                    // set tiled's group in order to make collision
                     tiled.node.group = 'wall';
 
+                    // add an component to each tiled and bind it with "body"
                     let body = tiled.node.addComponent(cc.RigidBody);
+                    //use body. to set RigidBody's arttribute
                     body.type = cc.RigidBodyType.Static;
+                    //PhysicsBoxCollider's defult anthor is center point
                     let collider =tiled.node.addComponent(cc.PhysicsBoxCollider);
+                    //since the anchor in map we set is left-down, we add offset to collider
                     collider.offset = cc.v2(tiledSize.width / 2 ,tiledSize.height / 2);
                     collider.size = tiledSize;
+                    // we need to apply the collider
                     collider.apply();
                 }
             }
