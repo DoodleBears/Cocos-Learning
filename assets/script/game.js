@@ -25,6 +25,7 @@ cc.Class({
             for (let j = 0; j < layerSize.height; j++){
                 // set every tiled's arttribute
                 let tiled = layer.getTiledTileAt(i, j, true);
+                //check if there exists a block in map
                 if (tiled.gid != 0){
                     // set tiled's group in order to make collision
                     tiled.node.group = 'wall';
