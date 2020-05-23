@@ -10,7 +10,7 @@ cc.Class({
         let p = cc.director.getPhysicsManager();
         p.enabled = true;
         //Draw collider space 绘制碰撞区域
-        p.debugDrawFlags = true;
+        //p.debugDrawFlags = true;
         p.gravity = cc.v2(0, 0);
         
     },
