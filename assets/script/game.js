@@ -2,21 +2,23 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        //Binding tiledMap(the property) to cc.TiledMap(allow us to add file in Cocos Creator)
-        tiledMap: cc.TiledMap
+        // Binding tiledMap(the property) to cc.TiledMap(allow us to add file in Cocos Creator)
+        tiledMap: cc.TiledMap,
+        // allow game.js to access the "dialog" node
+        dialogNode: cc.Node,
     },
 
     onLoad () {
         let p = cc.director.getPhysicsManager();
         p.enabled = true;
-        //Draw collider space 绘制碰撞区域
-        //p.debugDrawFlags = true;
+        // Draw collider space 绘制碰撞区域
+        // p.debugDrawFlags = true;
         p.gravity = cc.v2(0, 0);
         
     },
 
     start () { 
-        //get data from TiledMap, tiledMap is what we select in Cocos Creator
+        // get data from TiledMap, tiledMap is what we select in Cocos Creator
         let tiledSize = this.tiledMap.getTileSize();
         let layer = this.tiledMap.getLayer('wall');
         let layerSize = layer.getLayerSize();
@@ -44,6 +46,17 @@ cc.Class({
                 }
             }
         }
+
+        // to catch the script (which called "dialog" in dialog-bubble)
+        this.dialog = this.dialogNode.getComponent('dialog');
+
+        /*
+        this.dialog.init([
+            {role: 2, content: '我是魔王啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈'},
+            {role: 1, content: '大家好，我是勇者'},
+        ]);
+        */
+
     },
 
     // update (dt) {},

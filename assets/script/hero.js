@@ -44,6 +44,8 @@ cc.Class({
     // start () { },
     
     update (dt) {
+        // when there are dialogs running, player can't move
+        if (window.dialog && window.dialog.active) return;
         if (Input[cc.macro.KEY.a] || Input[cc.macro.KEY.left]){
             this.sp.x = -1;
         } else if (Input[cc.macro.KEY.d] || Input[cc.macro.KEY.right]){
