@@ -51,10 +51,12 @@ cc.Class({
         this.dialog = this.dialogNode.getComponent('dialog');
 
         /*
+
         this.dialog.init([
             {role: 2, content: '我是魔王啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈'},
             {role: 1, content: '大家好，我是勇者'},
         ]);
+        
         */
 
     },

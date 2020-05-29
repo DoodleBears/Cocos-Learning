@@ -46,6 +46,9 @@ cc.Class({
     update (dt) {
         // when there are dialogs running, player can't move
         if (window.dialog && window.dialog.active) return;
+        
+        
+        
         if (Input[cc.macro.KEY.a] || Input[cc.macro.KEY.left]){
             this.sp.x = -1;
         } else if (Input[cc.macro.KEY.d] || Input[cc.macro.KEY.right]){
@@ -53,6 +56,11 @@ cc.Class({
         } else {
             this.sp.x = 0;
         }
+
+        if ((Input[cc.macro.KEY.a] || Input[cc.macro.KEY.left]) && (Input[cc.macro.KEY.d] || Input[cc.macro.KEY.right])){
+            this.sp.x = 0;
+        }
+        
         
         if (Input[cc.macro.KEY.w] || Input[cc.macro.KEY.up]){
             this.sp.y = 1;
@@ -62,19 +70,27 @@ cc.Class({
             this.sp.y = 0;
         }    
 
+        if ( ( Input [ cc.macro.KEY.w ] || Input [ cc.macro.KEY.up ] ) && (Input [ cc.macro.KEY.s ] || Input [ cc.macro.KEY.down ] ) ){
+            this.sp.y = 0;
+        }
+
         this.lv = this.node.getComponent(cc.RigidBody).linearVelocity;
 
         if (this.sp.x) {
             //this.node.x += this.sp.x * this._speed * dt;
-            this.lv.y = 0;
+            //this.lv.y = 0;
             this.lv.x = this.sp.x * this._speed;
-        } else if (this.sp.y) {
-            //this.node.y += this.sp.y * this._speed * dt;
+        } else {
             this.lv.x = 0;
+        }
+        if (this.sp.y) {
+            //this.node.y += this.sp.y * this._speed * dt;
+            //this.lv.x = 0;
             this.lv.y = this.sp.y * this._speed;
         } else {
-            this.lv.x = this.lv.y = 0;
+            this.lv.y = 0;
         }
+        
 
         this.node.getComponent(cc.RigidBody).linearVelocity = this.lv;
 

@@ -174,7 +174,7 @@
       "array": [
         0,
         0,
-        594.4738988501557,
+        583.7251196808214,
         0,
         0,
         0,
@@ -915,7 +915,7 @@
     "_density": 1,
     "_sensor": false,
     "_friction": 0.2,
-    "_restitution": 0,
+    "_restitution": 0.2,
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",

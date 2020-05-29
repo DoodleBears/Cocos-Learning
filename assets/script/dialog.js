@@ -102,7 +102,7 @@ cc.Class({
                 this.textEnd = true;
                 this.nowText = null;
             }
-            //console.log(this.tt);
+            console.log(this.tt);
             // reset tt to pop out a character every time dt pass through 0.03
             this.tt = 0;
         }
